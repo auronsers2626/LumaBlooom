@@ -15,8 +15,9 @@
     --azul-claro:#7AA3C2;
     --azul-suave:#d4e4f0;
     --azul-muy-suave:#e8f0f7;
+    --azul-fondo:#f0f8ff; /* Azul bien clarito para el fondo */
     --marron:#6d5c5c;
-    --fondo:#ffffff;
+    --fondo:#f0f8ff; /* Cambiado a azul clarito */
     --texto:#333;
     --sombra-suave:0 10px 30px rgba(74, 123, 157, 0.1);
     --sombra-media:0 15px 35px rgba(74, 123, 157, 0.15);
@@ -32,11 +33,6 @@ body{
     transition:0.3s;
     background-image: radial-gradient(var(--azul-suave) 1px, transparent 1px);
     background-size: 30px 30px;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%234A7B9D" opacity="0.3"/><circle cx="12" cy="12" r="5" fill="%234A7B9D"/></svg>') 12 12, auto;
-}
-
-body:active {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%234A7B9D"/></svg>') 12 12, pointer;
 }
 
 /* WHATSAPP FLOTANTE */
@@ -72,7 +68,7 @@ body:active {
     box-shadow: 0 20px 40px rgba(18, 140, 126, 0.5);
 }
 
-/* BOTÓN DE IDIOMA - NUEVO (reemplaza al modo oscuro) */
+/* BOTÓN DE IDIOMA */
 .idioma-btn {
     cursor:pointer;
     font-size:28px;
@@ -186,11 +182,315 @@ body:active {
     cursor:pointer;
     color:var(--azul-principal);
     transition: 0.3s;
+    position: relative;
 }
 
 .admin:hover {
     transform: scale(1.15);
     color: var(--azul-oscuro);
+}
+
+/* MODAL LOGIN ADMIN */
+.admin-login-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.admin-login-modal.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.admin-login-content {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--sombra-fuerte);
+    transform: scale(0.9);
+    transition: 0.3s;
+}
+
+.admin-login-modal.active .admin-login-content {
+    transform: scale(1);
+}
+
+.admin-login-content h2 {
+    color: var(--azul-principal);
+    margin-bottom: 30px;
+    font-family: 'Playfair Display', serif;
+}
+
+.admin-login-content input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--azul-suave);
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+.admin-login-content input:focus {
+    outline: none;
+    border-color: var(--azul-principal);
+}
+
+.admin-login-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.admin-login-buttons button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-ingresar {
+    background: var(--azul-gradient);
+    color: white;
+}
+
+.btn-ingresar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(74, 123, 157, 0.3);
+}
+
+.btn-cancelar {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.btn-cancelar:hover {
+    background: #e0e0e0;
+}
+
+/* PANEL ADMIN */
+.admin-panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    background: white;
+    box-shadow: var(--sombra-fuerte);
+    z-index: 1500;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow-y: auto;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.admin-panel.active {
+    right: 0;
+}
+
+.admin-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--azul-suave);
+}
+
+.admin-panel-header h2 {
+    color: var(--azul-principal);
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
+
+.close-admin {
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--azul-principal);
+    transition: 0.3s;
+}
+
+.close-admin:hover {
+    transform: rotate(90deg);
+    color: var(--azul-oscuro);
+}
+
+.admin-form {
+    background: var(--azul-muy-suave);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-form h3 {
+    color: var(--azul-principal);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.admin-form input, .admin-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid var(--azul-suave);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+.admin-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.admin-form input[type="file"] {
+    padding: 8px;
+    background: white;
+}
+
+.admin-form button {
+    width: 100%;
+    padding: 15px;
+    background: var(--azul-gradient);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(74, 123, 157, 0.3);
+}
+
+.admin-productos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-producto-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: var(--azul-muy-suave);
+    border-radius: 15px;
+}
+
+.admin-producto-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.admin-producto-info {
+    flex: 1;
+}
+
+.admin-producto-info h4 {
+    margin: 0 0 5px 0;
+    color: var(--marron);
+}
+
+.admin-producto-info p {
+    margin: 0;
+    color: var(--azul-principal);
+    font-weight: 600;
+}
+
+.btn-eliminar {
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.btn-eliminar:hover {
+    transform: scale(1.1);
+    background: #cc0000;
+}
+
+/* Overlay para admin */
+.admin-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1400;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.admin-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Botón eliminar en productos (solo visible en modo admin) */
+.producto .btn-eliminar-producto {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    z-index: 10;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.producto .btn-eliminar-producto:hover {
+    transform: scale(1.1);
+    background: #cc0000;
+}
+
+.producto.modo-admin .btn-eliminar-producto {
+    display: flex;
 }
 
 /* CATEGORÍAS */
@@ -237,7 +537,7 @@ body:active {
     transform:translateY(-2px);
 }
 
-/* SLIDER - Optimizado para móviles */
+/* SLIDER */
 .slider{
     width:100%;
     height:500px;
@@ -271,7 +571,7 @@ body:active {
 .catalogo{
     padding:20px 0px;
     text-align:center;
-    background: white;
+    background: transparent; /* Cambiado a transparente para que se vea el fondo azul */
     position: relative;
 }
 
@@ -783,23 +1083,22 @@ body:active {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* FOOTER CON IMAGEN - Reducido y optimizado */
+/* FOOTER CON IMAGEN */
 .footer{
-    background-image: url('footer.jpg'); /* Cambia esto por el nombre de tu imagen */
+    background-image: url('footer.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: white;
     text-align:center;
-    padding: 30px 15px 20px; /* Reducido el padding */
+    padding: 30px 15px 20px;
     position: relative;
     overflow: hidden;
-    min-height: auto; /* Ajuste automático */
+    min-height: auto;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Overlay oscuro para que el texto se vea mejor sobre la imagen */
 .footer::before {
     content: '';
     position: absolute;
@@ -807,7 +1106,7 @@ body:active {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* Capa oscura semitransparente */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
@@ -817,8 +1116,8 @@ body:active {
 }
 
 .footer-logo img{
-    height: 150px; /* Reducido de 280px a 150px */
-    margin-bottom: 10px; /* Reducido */
+    height: 150px;
+    margin-bottom: 10px;
     filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.5));
     transition: 0.3s;
 }
@@ -832,8 +1131,8 @@ body:active {
     z-index: 2;
     font-family:'Montserrat', sans-serif;
     font-weight:500;
-    font-size: 16px; /* Reducido ligeramente */
-    margin: 10px 0; /* Reducido */
+    font-size: 16px;
+    margin: 10px 0;
     color: white;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
@@ -843,16 +1142,16 @@ body:active {
     z-index: 2;
     display:flex;
     justify-content:center;
-    gap:20px; /* Reducido */
-    margin-top:15px; /* Reducido */
+    gap:20px;
+    margin-top:15px;
 }
 
 .footer-social a{
     color: white;
-    font-size:24px; /* Reducido */
+    font-size:24px;
     transition: 0.3s;
-    width: 45px; /* Reducido */
-    height: 45px; /* Reducido */
+    width: 45px;
+    height: 45px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     border-radius: 50%;
@@ -888,14 +1187,14 @@ body:active {
     50% { transform: scale(1.3); opacity: 1; }
 }
 
-/* RESPONSIVE MEJORADO PARA MÓVILES */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .banner {
         padding: 20px 15px;
     }
     
     .logo img {
-        height: 90px; /* Reducido para móvil */
+        height: 90px;
     }
     
     .social a, .admin {
@@ -918,13 +1217,12 @@ body:active {
         font-size: 14px;
     }
     
-    /* SLIDER RESPONSIVE */
     .slider {
-        height: 250px; /* Altura reducida para móvil */
+        height: 250px;
     }
     
     .slide {
-        object-position: center; /* Centra la imagen */
+        object-position: center;
     }
     
     .catalogo h2 {
@@ -935,7 +1233,7 @@ body:active {
     .productos {
         padding: 0 15px;
         gap: 15px;
-        grid-template-columns: 1fr; /* Una columna en móvil */
+        grid-template-columns: 1fr;
     }
     
     .producto img {
@@ -971,13 +1269,12 @@ body:active {
         font-size: 24px;
     }
     
-    /* FOOTER RESPONSIVE */
     .footer {
         padding: 20px 10px 15px;
     }
     
     .footer-logo img {
-        height: 100px; /* Aún más pequeño en móvil */
+        height: 100px;
     }
     
     .footer p {
@@ -1012,7 +1309,15 @@ body:active {
         font-size: 22px;
     }
     
-    /* Ajustes para el modal en móvil */
+    .admin-panel {
+        max-width: 100%;
+        padding: 20px;
+    }
+    
+    .admin-login-content {
+        padding: 30px 20px;
+    }
+    
     .product-detail-content {
         padding: 20px;
         max-height: 90vh;
@@ -1037,10 +1342,9 @@ body:active {
     }
 }
 
-/* Ajustes para pantallas muy pequeñas */
 @media (max-width: 480px) {
     .slider {
-        height: 200px; /* Más pequeño para pantallas muy pequeñas */
+        height: 200px;
     }
     
     .categoria-item {
@@ -1058,7 +1362,7 @@ body:active {
 <body>
 
 <!-- WHATSAPP FLOTANTE -->
-<a href="https://wa.me/15129473241" class="whatsapp-flotante" target="_blank">
+<a href="https://wa.me/5129473241" class="whatsapp-flotante" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -1066,6 +1370,41 @@ body:active {
 <a href="#" class="subir-arriba" id="subirArriba">
     <i class="fas fa-arrow-up"></i>
 </a>
+
+<!-- MODAL LOGIN ADMIN -->
+<div class="admin-login-modal" id="adminLoginModal">
+    <div class="admin-login-content">
+        <h2><i class="fas fa-lock" style="margin-right: 10px;"></i>Acceso Administrador</h2>
+        <input type="password" id="adminPassword" placeholder="Ingresa la contraseña" onkeypress="if(event.key==='Enter') verificarAdmin()">
+        <div class="admin-login-buttons">
+            <button class="btn-ingresar" onclick="verificarAdmin()">Ingresar</button>
+            <button class="btn-cancelar" onclick="cerrarLoginAdmin()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL ADMIN -->
+<div class="admin-overlay" id="adminOverlay" onclick="cerrarAdminPanel()"></div>
+<div class="admin-panel" id="adminPanel">
+    <div class="admin-panel-header">
+        <h2><i class="fas fa-cog" style="margin-right: 10px;"></i>Panel de Administración</h2>
+        <span class="close-admin" onclick="cerrarAdminPanel()"><i class="fas fa-arrow-right"></i></span>
+    </div>
+    
+    <div class="admin-form">
+        <h3>Agregar Nuevo Producto</h3>
+        <input type="text" id="nuevoProductoNombre" placeholder="Nombre del producto">
+        <textarea id="nuevoProductoDesc" placeholder="Descripción del producto"></textarea>
+        <input type="text" id="nuevoProductoPrecio" placeholder="Precio (ej: $29.990)">
+        <input type="file" id="nuevoProductoImagen" accept="image/*">
+        <button onclick="agregarProducto()">Agregar Producto</button>
+    </div>
+    
+    <h3 style="color: var(--azul-principal); margin-bottom: 15px;">Productos Actuales</h3>
+    <div class="admin-productos-list" id="adminProductosList">
+        <!-- Aquí se cargarán los productos dinámicamente -->
+    </div>
+</div>
 
 <header class="banner">
     <div class="social">
@@ -1079,8 +1418,7 @@ body:active {
     </div>
 
     <div class="right-icons">
-        <a href="admin.html" class="admin"><i class="fas fa-user-shield"></i></a>
-        <!-- BOTÓN DE IDIOMA (reemplaza al modo oscuro) -->
+        <a href="javascript:void(0)" class="admin" onclick="abrirLoginAdmin()"><i class="fas fa-user-shield"></i></a>
         <button class="idioma-btn" onclick="cambiarIdioma()">ES</button>
     </div>
 </header>
@@ -1110,57 +1448,8 @@ body:active {
 
 <section class="catalogo">
     <h2>Catálogo</h2>
-    <div class="productos">
-        <div class="producto" onclick="abrirDetalle('Ramo Rosado','Hermoso ramo rosado con flores frescas y detalles elegantes. Perfecto para ocasiones especiales.',['1.jpg','1a.jpg','1b.jpg'], '$29.990')">
-            <img src="1.jpg">
-            <h3>Ramo Rosado</h3>
-            <p>$29.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Peluche con Flores','Adorable peluche acompañado de un hermoso arreglo floral. El regalo perfecto.',['2.jpg','2a.jpg','2b.jpg'], '$24.990')">
-            <img src="2.jpg">
-            <h3>Peluche con Flores</h3>
-            <p>$24.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Taza Personalizada','Taza de cerámica con diseño personalizado. Ideal para detalles únicos.',['3.jpg','3a.jpg','3b.jpg'], '$14.990')">
-            <img src="3.jpg">
-            <h3>Taza Personalizada</h3>
-            <p>$14.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Caja Regalo Deluxe','Elegante caja con sorpresas y detalles especiales. Para consentir a quien más quieres.',['4.jpg','4a.jpg','4b.jpg'], '$39.990')">
-            <img src="4.jpg">
-            <h3>Caja Regalo Deluxe</h3>
-            <p>$39.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Ramo de Tulipanes','Colorido ramo de tulipanes frescos. Alegra cualquier espacio.',['5.jpg','5a.jpg','5b.jpg'], '$34.990')">
-            <img src="5.jpg">
-            <h3>Ramo de Tulipanes</h3>
-            <p>$34.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Peluche Gigante','Suave y enorme peluche para abrazar. El compañero perfecto.',['7.jpg','7a.jpg','7b.jpg'], '$49.990')">
-            <img src="6.jpg">
-            <h3>Peluche Gigante</h3>
-            <p>$49.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Peluche Oso','Oso de peluche con corazón bordado. Detalle romántico.',['7.jpg','7a.jpg','7b.jpg'], '$49.990')">
-            <img src="7.jpg">
-            <h3>Peluche Oso</h3>
-            <p>$49.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Peluche Conejo','Conejo de peluche suavecito. Ideal para niños.',['8.jpg','8a.jpg','8b.jpg'], '$49.990')">
-            <img src="8.jpg">
-            <h3>Peluche Conejo</h3>
-            <p>$49.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Peluche Perro','Perrito de peluche con look tierno.',['12.jpg','12a.jpg','12b.jpg'], '$49.990')">
-            <img src="12.jpg">
-            <h3>Peluche Perro</h3>
-            <p>$49.990</p>
-        </div>
-        <div class="producto" onclick="abrirDetalle('Peluche Gato','Gatito de peluche con bigotes bordados.',['10.jpg','10a.jpg','10b.jpg'], '$49.990')">
-            <img src="10.jpg">
-            <h3>Peluche Gato</h3>
-            <p>$49.990</p>
-        </div>
+    <div class="productos" id="productosContainer">
+        <!-- Los productos se cargarán aquí dinámicamente desde localStorage -->
     </div>
 </section>
 
@@ -1171,7 +1460,6 @@ body:active {
 <section class="categorias-destacadas">
     <h2 class="titulo-categorias">CATEGORÍAS</h2>
     <div class="grid-categorias">
-        <!-- Fila 1 -->
         <div class="categoria-item" onclick="irACategoria('tazas')">
             <img src="tazas.png" alt="Tazas Personalizadas">
             <div class="categoria-overlay">
@@ -1180,15 +1468,14 @@ body:active {
         </div>
         
         <div class="categoria-item" onclick="irACategoria('manillas')">
-            <img src="ramos.png" alt="Manillas y Pulseras">
+            <img src="manillas.png" alt="Manillas y Pulseras">
             <div class="categoria-overlay">
                 <h3>MANILLAS</h3>
             </div>
         </div>
         
-        <!-- Fila 2 -->
         <div class="categoria-item" onclick="irACategoria('ramos')">
-            <img src="manillas.png" alt="Ramos de Flores">
+            <img src="ramos.png" alt="Ramos de Flores">
             <div class="categoria-overlay">
                 <h3>RAMOS</h3>
             </div>
@@ -1227,7 +1514,7 @@ body:active {
     </div>
 </div>
 
-<!-- FOOTER CON IMAGEN DE FONDO -->
+<!-- FOOTER CON IMAGEN -->
 <footer class="footer">
     <div class="footer-logo">
         <img src="12.png" alt="Lumabloom">
@@ -1242,7 +1529,154 @@ body:active {
 </footer>
 
 <script>
-// Eliminada la función toggleMode()
+// Variables globales
+let productos = [];
+let modoAdminActivo = false;
+const CONTRASENA_ADMIN = "1302";
+
+// Cargar productos al iniciar
+cargarProductosIniciales();
+
+function cargarProductosIniciales() {
+    const productosGuardados = localStorage.getItem('lumabloomProductos');
+    if (productosGuardados) {
+        productos = JSON.parse(productosGuardados);
+    } else {
+        // Productos por defecto
+        productos = [
+            { id: 1, nombre: 'Ramo Rosado', desc: 'Hermoso ramo rosado con flores frescas y detalles elegantes. Perfecto para ocasiones especiales.', precio: '$29.990', imagen: '1.jpg' },
+            { id: 2, nombre: 'Peluche con Flores', desc: 'Adorable peluche acompañado de un hermoso arreglo floral. El regalo perfecto.', precio: '$24.990', imagen: '2.jpg' },
+            { id: 3, nombre: 'Taza Personalizada', desc: 'Taza de cerámica con diseño personalizado. Ideal para detalles únicos.', precio: '$14.990', imagen: '3.jpg' },
+            { id: 4, nombre: 'Caja Regalo Deluxe', desc: 'Elegante caja con sorpresas y detalles especiales.', precio: '$39.990', imagen: '4.jpg' },
+            { id: 5, nombre: 'Ramo de Tulipanes', desc: 'Colorido ramo de tulipanes frescos.', precio: '$34.990', imagen: '5.jpg' },
+            { id: 6, nombre: 'Peluche Gigante', desc: 'Suave y enorme peluche para abrazar.', precio: '$49.990', imagen: '6.jpg' },
+            { id: 7, nombre: 'Peluche Oso', desc: 'Oso de peluche con corazón bordado.', precio: '$49.990', imagen: '7.jpg' },
+            { id: 8, nombre: 'Peluche Conejo', desc: 'Conejo de peluche suavecito.', precio: '$49.990', imagen: '8.jpg' },
+            { id: 9, nombre: 'Peluche Perro', desc: 'Perrito de peluche con look tierno.', precio: '$49.990', imagen: '12.jpg' },
+            { id: 10, nombre: 'Peluche Gato', desc: 'Gatito de peluche con bigotes bordados.', precio: '$49.990', imagen: '10.jpg' }
+        ];
+        guardarProductos();
+    }
+    renderizarProductos();
+}
+
+function guardarProductos() {
+    localStorage.setItem('lumabloomProductos', JSON.stringify(productos));
+}
+
+function renderizarProductos() {
+    const container = document.getElementById('productosContainer');
+    container.innerHTML = '';
+    
+    productos.forEach(producto => {
+        const productoHTML = `
+            <div class="producto ${modoAdminActivo ? 'modo-admin' : ''}" data-id="${producto.id}">
+                <button class="btn-eliminar-producto" onclick="eliminarProducto(${producto.id})"><i class="fas fa-trash"></i></button>
+                <img src="${producto.imagen}" onclick="abrirDetalle('${producto.nombre}', '${producto.desc}', ['${producto.imagen}'], '${producto.precio}')">
+                <h3>${producto.nombre}</h3>
+                <p>${producto.precio}</p>
+            </div>
+        `;
+        container.innerHTML += productoHTML;
+    });
+    
+    // Actualizar lista en panel admin
+    actualizarListaAdmin();
+}
+
+function actualizarListaAdmin() {
+    const listaAdmin = document.getElementById('adminProductosList');
+    if (!listaAdmin) return;
+    
+    listaAdmin.innerHTML = '';
+    productos.forEach(producto => {
+        const itemHTML = `
+            <div class="admin-producto-item">
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <div class="admin-producto-info">
+                    <h4>${producto.nombre}</h4>
+                    <p>${producto.precio}</p>
+                </div>
+                <button class="btn-eliminar" onclick="eliminarProducto(${producto.id})"><i class="fas fa-trash"></i></button>
+            </div>
+        `;
+        listaAdmin.innerHTML += itemHTML;
+    });
+}
+
+function abrirLoginAdmin() {
+    document.getElementById('adminLoginModal').classList.add('active');
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminPassword').focus();
+}
+
+function cerrarLoginAdmin() {
+    document.getElementById('adminLoginModal').classList.remove('active');
+}
+
+function verificarAdmin() {
+    const password = document.getElementById('adminPassword').value;
+    if (password === CONTRASENA_ADMIN) {
+        cerrarLoginAdmin();
+        modoAdminActivo = true;
+        document.getElementById('adminPanel').classList.add('active');
+        document.getElementById('adminOverlay').classList.add('active');
+        renderizarProductos(); // Re-renderizar para mostrar botones eliminar
+    } else {
+        alert('❌ Contraseña incorrecta');
+    }
+}
+
+function cerrarAdminPanel() {
+    modoAdminActivo = false;
+    document.getElementById('adminPanel').classList.remove('active');
+    document.getElementById('adminOverlay').classList.remove('active');
+    renderizarProductos(); // Quitar botones eliminar
+}
+
+function eliminarProducto(id) {
+    if (confirm('¿Estás seguro de eliminar este producto?')) {
+        productos = productos.filter(p => p.id !== id);
+        guardarProductos();
+        renderizarProductos();
+    }
+}
+
+function agregarProducto() {
+    const nombre = document.getElementById('nuevoProductoNombre').value;
+    const desc = document.getElementById('nuevoProductoDesc').value;
+    const precio = document.getElementById('nuevoProductoPrecio').value;
+    const imagenFile = document.getElementById('nuevoProductoImagen').files[0];
+    
+    if (!nombre || !desc || !precio || !imagenFile) {
+        alert('Por favor completa todos los campos');
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const nuevoProducto = {
+            id: Date.now(),
+            nombre: nombre,
+            desc: desc,
+            precio: precio,
+            imagen: e.target.result
+        };
+        
+        productos.push(nuevoProducto);
+        guardarProductos();
+        renderizarProductos();
+        
+        // Limpiar formulario
+        document.getElementById('nuevoProductoNombre').value = '';
+        document.getElementById('nuevoProductoDesc').value = '';
+        document.getElementById('nuevoProductoPrecio').value = '';
+        document.getElementById('nuevoProductoImagen').value = '';
+        
+        alert('✅ Producto agregado correctamente');
+    };
+    reader.readAsDataURL(imagenFile);
+}
 
 let slides=document.querySelectorAll(".slide");
 let index=0;
@@ -1295,7 +1729,7 @@ function enviarWhatsAppDetalle(){
     const cantidad = detailCantidad.value;
     const producto = detailTitle.textContent;
     const mensaje = `Hola! Quiero comprar ${cantidad} ${producto}`;
-    const numero = "15129473241";
+    const numero = "5129473241";
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url,'_blank');
 }
@@ -1311,25 +1745,7 @@ function compartir(red){
     }
 }
 
-// Función para redirigir a categorías
 function irACategoria(categoria) {
-    switch(categoria) {
-        case 'tazas':
-            window.location.href = '#tazas';
-            break;
-        case 'manillas':
-            window.location.href = '#manillas';
-            break;
-        case 'ramos':
-            window.location.href = '#ramos';
-            break;
-        case 'regalos':
-            window.location.href = '#regalos';
-            break;
-        default:
-            console.log('Categoría no encontrada');
-    }
-    
     alert(`✨ Categoría seleccionada: ${categoria} ✨`);
 }
 
@@ -1353,24 +1769,33 @@ document.getElementById('subirArriba').addEventListener('click', function(e) {
 
 // Cerrar modal con tecla ESC
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && productDetail.classList.contains('active')) {
-        cerrarDetalle();
+    if (e.key === 'Escape') {
+        if (productDetail.classList.contains('active')) {
+            cerrarDetalle();
+        }
+        if (document.getElementById('adminPanel').classList.contains('active')) {
+            cerrarAdminPanel();
+        }
+        if (document.getElementById('adminLoginModal').classList.contains('active')) {
+            cerrarLoginAdmin();
+        }
     }
 });
 
-// Nueva función para cambiar idioma (reemplaza al modo oscuro)
 function cambiarIdioma() {
     const btn = document.querySelector('.idioma-btn');
     if (btn.textContent === 'ES') {
         btn.textContent = 'EN';
-        alert('Idioma cambiado a Inglés (simulación)');
+        alert('🌎 Idioma cambiado a Inglés');
+        // Aquí iría la lógica real de cambio de idioma
     } else {
         btn.textContent = 'ES';
-        alert('Idioma cambiado a Español (simulación)');
+        alert('🌎 Idioma cambiado a Español');
     }
 }
 </script>
 
 </body>
 </html>
+
 
