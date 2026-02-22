@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumabloom · Flores y Regalos</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --azul-principal:#4A7B9D;
+    --azul-oscuro:#2c5a7a;
+    --azul-claro:#7AA3C2;
+    --azul-suave:#d4e4f0;
+    --azul-muy-suave:#e8f0f7;
+    --marron:#6d5c5c;
+    --fondo:#ffffff;
+    --texto:#333;
+    --sombra-suave:0 10px 30px rgba(74, 123, 157, 0.1);
+    --sombra-media:0 15px 35px rgba(74, 123, 157, 0.15);
+    --sombra-fuerte:0 20px 40px rgba(74, 123, 157, 0.2);
+    --azul-gradient:linear-gradient(135deg, #3a95d6 0%, #3a95d6 100%);
+}
+
+body{
+    margin:0;
+    font-family:'Montserrat', sans-serif;
+    background:var(--fondo);
+    color:var(--texto);
+    transition:0.3s;
+    background-image: radial-gradient(var(--azul-suave) 1px, transparent 1px);
+    background-size: 30px 30px;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%234A7B9D" opacity="0.3"/><circle cx="12" cy="12" r="5" fill="%234A7B9D"/></svg>') 12 12, auto;
+}
+
+.dark-mode{
+    --fondo:#1e1e1e;
+    --texto:#c4e4f7;
+}
+
+body:active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%234A7B9D"/></svg>') 12 12, pointer;
+}
+
+/* WHATSAPP FLOTANTE */
+.whatsapp-flotante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25D366;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+    50% { transform: scale(1.1); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6); }
+    100% { transform: scale(1); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+}
+
+.whatsapp-flotante:hover {
+    transform: scale(1.15) rotate(5deg);
+    background: #128C7E;
+    box-shadow: 0 20px 40px rgba(18, 140, 126, 0.5);
+}
+
+/* SUBIR ARRIBA */
+.subir-arriba {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    background: var(--azul-principal);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    box-shadow: 0 5px 20px rgba(74, 123, 157, 0.4);
+    z-index: 998;
+    transition: 0.3s;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.subir-arriba.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.subir-arriba:hover {
+    transform: translateY(-5px);
+    background: var(--azul-oscuro);
+    box-shadow: 0 10px 25px rgba(74, 123, 157, 0.6);
+}
+
+/* HEADER */
+.banner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:40px 60px;
+    background: rgba(173, 205, 228, 0.5);
+    backdrop-filter: blur(10px);
+    position:relative;
+    box-shadow: var(--sombra-suave);
+    border-bottom: 1px solid rgba(74, 123, 157, 0.3);
+}
+
+.social{
+    display:flex;
+    gap:15px;
+}
+
+.social a{
+    color:var(--azul-principal);
+    font-size:32px;
+    transition:0.3s;
+}
+
+.social a:hover{
+    transform:scale(1.2) translateY(-3px);
+    color: var(--azul-oscuro);
+}
+
+.logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.logo img{
+    height:180px;
+    transition: 0.3s;
+    filter: drop-shadow(0 5px 15px rgba(74, 123, 157, 0.3));
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.right-icons{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.admin{
+    font-size:32px;
+    cursor:pointer;
+    color:var(--azul-principal);
+    transition: 0.3s;
+}
+
+.admin:hover {
+    transform: scale(1.15);
+    color: var(--azul-oscuro);
+}
+
+.toggle{
+    cursor:pointer;
+    font-size:28px;
+    background:none;
+    border:none;
+    transition: 0.3s;
+}
+
+.toggle:hover {
+    transform: rotate(180deg);
+}
+
+/* CATEGORÍAS */
+.categorias{
+    background: var(--azul-gradient);
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    padding:20px 0;
+    font-weight:600;
+    box-shadow: 0 10px 20px rgba(74, 123, 157, 0.3);
+    position: relative;
+    z-index: 10;
+}
+
+.categorias a{
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    transition:0.3s;
+    font-family:'Montserrat', sans-serif;
+    font-weight:600;
+    position: relative;
+    padding: 5px 0;
+}
+
+.categorias a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+.categorias a:hover::before {
+    width: 100%;
+}
+
+.categorias a:hover{
+    opacity:1;
+    transform:translateY(-2px);
+}
+
+/* SLIDER */
+.slider{
+    width:100%;
+    height:500px;
+    position:relative;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.95);
+}
+
+.slide.active{
+    opacity:1;
+}
+
+/* LINEA DIVISORIA PRINCIPAL */
+.division-rosa{
+    height:14px;
+    background: var(--azul-gradient);
+    margin:0;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* CATALOGO */
+.catalogo{
+    padding:20px 0px;
+    text-align:center;
+    background: white;
+    position: relative;
+}
+
+.catalogo h2{
+    font-size:66px;
+    margin-bottom:50px;
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    color: var(--azul-principal);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(74, 123, 157, 0.2);
+}
+
+.catalogo h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--azul-gradient);
+    border-radius: 4px;
+}
+
+.productos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    padding:0 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.producto{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor:pointer;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid rgba(74, 123, 157, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.producto:nth-child(1) { animation-delay: 0.1s; }
+.producto:nth-child(2) { animation-delay: 0.2s; }
+.producto:nth-child(3) { animation-delay: 0.3s; }
+.producto:nth-child(4) { animation-delay: 0.4s; }
+.producto:nth-child(5) { animation-delay: 0.5s; }
+.producto:nth-child(6) { animation-delay: 0.6s; }
+.producto:nth-child(7) { animation-delay: 0.7s; }
+.producto:nth-child(8) { animation-delay: 0.8s; }
+.producto:nth-child(9) { animation-delay: 0.9s; }
+.producto:nth-child(10) { animation-delay: 1s; }
+
+.producto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: 0.5s;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.producto:hover::before {
+    left: 100%;
+}
+
+.producto::after {
+    content: 'VER PRODUCTO';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--azul-gradient);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 2;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(74, 123, 157, 0.5);
+}
+
+.producto:hover::after {
+    opacity: 1;
+}
+
+.producto img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:15px;
+    transition: 0.5s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.producto:hover img{
+    transform: scale(0.95);
+    filter: blur(1px) brightness(0.8);
+}
+
+.producto h3{
+    margin:15px 0 8px;
+    font-size:20px;
+    color:var(--marron);
+    font-family:'Montserrat', sans-serif;
+    font-weight:600;
+}
+
+.producto p{
+    font-size:18px;
+    color:var(--azul-principal);
+    font-weight:700;
+    font-family:'Montserrat', sans-serif;
+}
+
+/* LÍNEA DIVISORIA ENTRE PRODUCTOS Y CATEGORÍAS */
+.linea-divisoria {
+    width: 90%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--azul-principal), var(--azul-claro), var(--azul-oscuro), var(--azul-claro), var(--azul-principal), transparent);
+    margin: 20px auto 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(74, 123, 157, 0.4);
+    animation: brillo 3s infinite;
+}
+
+@keyframes brillo {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; box-shadow: 0 5px 30px rgba(74, 123, 157, 0.7); }
+}
+
+/* MODAL PRODUCTO */
+.product-detail{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    visibility:hidden;
+    opacity:0;
+    transition:0.4s;
+    z-index:1000;
+}
+
+.product-detail.active{
+    visibility:visible;
+    opacity:1;
+}
+
+.product-detail-content{
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding:30px;
+    max-width:1000px;
+    width:90%;
+    display:flex;
+    border-radius:25px;
+    position:relative;
+    gap:30px;
+    flex-wrap:wrap;
+    box-shadow: var(--sombra-fuerte);
+    border: 1px solid rgba(74, 123, 157, 0.3);
+    transform: scale(0.9);
+    transition: 0.4s;
+}
+
+.product-detail.active .product-detail-content {
+    transform: scale(1);
+}
+
+.close-detail{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+    color:var(--azul-principal);
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.close-detail:hover{
+    transform: rotate(90deg) scale(1.1);
+    color: var(--azul-oscuro);
+}
+
+.product-images{
+    flex:1 1 400px;
+}
+
+.product-images img.main-img{
+    width:100%;
+    height:450px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow: var(--sombra-media);
+}
+
+.thumbs{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+    flex-wrap: wrap;
+}
+
+.thumbs img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:12px;
+    cursor:pointer;
+    border:3px solid transparent;
+    transition: 0.3s;
+    box-shadow: var(--sombra-suave);
+}
+
+.thumbs img:hover, .thumbs img.active{
+    border:3px solid var(--azul-principal);
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-media);
+}
+
+.product-info{
+    flex:1 1 350px;
+}
+
+.product-info h1{
+    font-size:32px;
+    color:var(--azul-principal);
+    margin-bottom:15px;
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+}
+
+.product-info p.description{
+    margin-bottom:20px;
+    line-height:1.8;
+    font-family:'Montserrat', sans-serif;
+    font-weight:500;
+    color: #555;
+    font-size: 16px;
+}
+
+.product-info p.price{
+    font-size:28px;
+    font-weight:800;
+    color:var(--azul-principal);
+    margin-bottom:25px;
+    font-family:'Montserrat', sans-serif;
+}
+
+.product-info label{
+    font-weight:600;
+    font-family:'Montserrat', sans-serif;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--marron);
+}
+
+.product-info input[type=number]{
+    width:80px;
+    padding:10px;
+    margin:0 0 25px 0;
+    font-size:16px;
+    border-radius:10px;
+    border:2px solid var(--azul-suave);
+    font-family:'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.product-info input[type=number]:focus {
+    outline: none;
+    border-color: var(--azul-principal);
+}
+
+.product-info button.whatsapp-btn{
+    background: var(--azul-gradient);
+    color:white;
+    padding:15px 25px;
+    border:none;
+    border-radius:40px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    margin-bottom:20px;
+    font-family:'Montserrat', sans-serif;
+    font-weight:600;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(74, 123, 157, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-info button.whatsapp-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.product-info button.whatsapp-btn:focus::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% { transform: scale(0, 0); opacity: 0.5; }
+    100% { transform: scale(20, 20); opacity: 0; }
+}
+
+.product-info button.whatsapp-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(74, 123, 157, 0.5);
+}
+
+.share-icons{
+    display:flex;
+    gap:20px;
+    margin-top:15px;
+    justify-content: center;
+}
+
+.share-icons a{
+    color:var(--azul-principal);
+    font-size:28px;
+    transition: 0.3s;
+    width: 50px;
+    height: 50px;
+    background: var(--azul-suave);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-icons a:hover{
+    transform: translateY(-5px) rotate(360deg);
+    background: var(--azul-principal);
+    color: white;
+}
+
+/* SECCIÓN CATEGORIAS DESTACADAS */
+.categorias-destacadas {
+    padding: 40px 20px 30px 20px;
+    background: linear-gradient(135deg, #fff 0%, #f0f7fc 100%);
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 50px 50px 0 0;
+    position: relative;
+}
+
+.categorias-destacadas::before {
+    content: '💙';
+    position: absolute;
+    top: -15px;
+    left: 5%;
+    font-size: 30px;
+    opacity: 0.3;
+    animation: flotar 8s infinite;
+}
+
+.categorias-destacadas::after {
+    content: '💙';
+    position: absolute;
+    bottom: 10px;
+    right: 5%;
+    font-size: 30px;
+    opacity: 0.3;
+    animation: flotar 10s infinite reverse;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(5deg); }
+    50% { transform: translateY(0) rotate(0deg); }
+    75% { transform: translateY(10px) rotate(-5deg); }
+}
+
+.titulo-categorias {
+    text-align: center;
+    font-size: 52px;
+    color: var(--azul-principal);
+    margin-bottom: 30px;
+    font-weight: 800;
+    font-family:'Playfair Display', serif;
+    text-shadow: 3px 3px 6px rgba(74, 123, 157, 0.2);
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 60px;
+    padding: 10px 40px;
+    box-shadow: var(--sombra-suave);
+}
+
+.grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    width: 100%;
+}
+
+.categoria-item {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    border-radius: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--sombra-media);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid transparent;
+}
+
+.categoria-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 40px rgba(74, 123, 157, 0.4);
+    border-color: white;
+}
+
+.categoria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.categoria-item:hover img {
+    transform: scale(1.15);
+}
+
+.categoria-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(74, 123, 157, 0.98), rgba(74, 123, 157, 0.3));
+    color: white;
+    padding: 25px;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(5px);
+}
+
+.categoria-item:hover .categoria-overlay {
+    transform: translateY(0);
+}
+
+.categoria-overlay h3 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family:'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* FOOTER */
+.footer{
+    background: linear-gradient(135deg, var(--azul-suave) 0%, var(--azul-muy-suave) 100%);
+    color: var(--marron);
+    text-align:center;
+    padding:5px 1px 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--azul-gradient);
+}
+
+.footer-logo img{
+    height:280px;
+    margin-bottom:15px;
+    filter: drop-shadow(0 5px 5px rgba(74, 123, 157, 0.5));
+    transition: 0.3s;
+}
+
+.footer-logo img:hover {
+    transform: scale(1.05);
+}
+
+.footer p {
+    font-family:'Montserrat', sans-serif;
+    font-weight:500;
+    font-size: 18px;
+    margin: 20px 0;
+    color: var(--marron);
+}
+
+.footer-social{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-top:25px;
+}
+
+.footer-social a{
+    color: var(--marron);
+    font-size:28px;
+    transition: 0.3s;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--sombra-suave);
+}
+
+.footer-social a:hover{
+    transform: translateY(-8px) rotate(360deg);
+    background: var(--azul-principal);
+    color: white;
+    box-shadow: 0 15px 30px rgba(74, 123, 157, 0.5);
+}
+
+/* SEPARADOR CON ICONOS */
+.separador-icono {
+    text-align: center;
+    margin: 30px 0;
+    word-spacing: 15px;
+}
+
+.separador-icono i {
+    color: var(--azul-principal);
+    font-size: 20px;
+    animation: latido 1.5s infinite;
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .banner {
+        padding: 30px 20px;
+    }
+    
+    .logo img {
+        height: 120px;
+    }
+    
+    .social a, .admin, .toggle {
+        font-size: 24px;
+    }
+    
+    .categorias {
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+    
+    .categorias a {
+        font-size: 14px;
+    }
+    
+    .slider {
+        height: 300px;
+    }
+    
+    .catalogo h2 {
+        font-size: 36px;
+    }
+    
+    .productos {
+        padding: 0 20px;
+        gap: 20px;
+    }
+    
+    .categorias-destacadas {
+        padding: 30px 15px 20px 15px;
+    }
+    
+    .titulo-categorias {
+        font-size: 28px;
+        padding: 8px 20px;
+    }
+    
+    .grid-categorias {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .categoria-item {
+        height: 180px;
+    }
+    
+    .categoria-overlay {
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(74, 123, 157, 0.95), transparent);
+        padding: 15px;
+    }
+    
+    .categoria-overlay h3 {
+        font-size: 24px;
+    }
+    
+    .whatsapp-flotante {
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .subir-arriba {
+        bottom: 90px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5129473241" class="whatsapp-flotante" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- BOTÓN SUBIR ARRIBA -->
+<a href="#" class="subir-arriba" id="subirArriba">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<header class="banner">
+    <div class="social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
+
+    <div class="logo">
+        <img src="12.png" alt="Lumabloom Logo">
+    </div>
+
+    <div class="right-icons">
+        <a href="admin.html" class="admin"><i class="fas fa-user-shield"></i></a>
+        <button class="toggle" onclick="toggleMode()">🌙</button>
+    </div>
+</header>
+
+<nav class="categorias">
+    <a href="#">Ramos</a>
+    <a href="#">Regalos</a>
+    <a href="#">Tazas</a>
+    <a href="#">Peluches</a>
+    <a href="#">Personalizados</a>
+</nav>
+
+<section class="slider">
+    <img src="a.jpg" class="slide active">
+    <img src="b.jpg" class="slide">
+    <img src="c.jpg" class="slide">
+</section>
+
+<div class="division-rosa"></div>
+
+<!-- SEPARADOR CON ICONOS -->
+<div class="separador-icono">
+    <i class="fas fa-heart"></i>
+    <i class="fas fa-heart"></i>
+    <i class="fas fa-heart"></i>
+</div>
+
+<section class="catalogo">
+    <h2>Catálogo</h2>
+    <div class="productos">
+        <div class="producto" onclick="abrirDetalle('Ramo Rosado','Hermoso ramo rosado con flores frescas y detalles elegantes. Perfecto para ocasiones especiales.',['1.jpg','1a.jpg','1b.jpg'], '$29.990')">
+            <img src="1.jpg">
+            <h3>Ramo Rosado</h3>
+            <p>$29.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Peluche con Flores','Adorable peluche acompañado de un hermoso arreglo floral. El regalo perfecto.',['2.jpg','2a.jpg','2b.jpg'], '$24.990')">
+            <img src="2.jpg">
+            <h3>Peluche con Flores</h3>
+            <p>$24.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Taza Personalizada','Taza de cerámica con diseño personalizado. Ideal para detalles únicos.',['3.jpg','3a.jpg','3b.jpg'], '$14.990')">
+            <img src="3.jpg">
+            <h3>Taza Personalizada</h3>
+            <p>$14.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Caja Regalo Deluxe','Elegante caja con sorpresas y detalles especiales. Para consentir a quien más quieres.',['4.jpg','4a.jpg','4b.jpg'], '$39.990')">
+            <img src="4.jpg">
+            <h3>Caja Regalo Deluxe</h3>
+            <p>$39.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Ramo de Tulipanes','Colorido ramo de tulipanes frescos. Alegra cualquier espacio.',['5.jpg','5a.jpg','5b.jpg'], '$34.990')">
+            <img src="5.jpg">
+            <h3>Ramo de Tulipanes</h3>
+            <p>$34.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Peluche Gigante','Suave y enorme peluche para abrazar. El compañero perfecto.',['7.jpg','7a.jpg','7b.jpg'], '$49.990')">
+            <img src="6.jpg">
+            <h3>Peluche Gigante</h3>
+            <p>$49.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Peluche Oso','Oso de peluche con corazón bordado. Detalle romántico.',['7.jpg','7a.jpg','7b.jpg'], '$49.990')">
+            <img src="7.jpg">
+            <h3>Peluche Oso</h3>
+            <p>$49.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Peluche Conejo','Conejo de peluche suavecito. Ideal para niños.',['8.jpg','8a.jpg','8b.jpg'], '$49.990')">
+            <img src="8.jpg">
+            <h3>Peluche Conejo</h3>
+            <p>$49.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Peluche Perro','Perrito de peluche con look tierno.',['12.jpg','12a.jpg','12b.jpg'], '$49.990')">
+            <img src="12.jpg">
+            <h3>Peluche Perro</h3>
+            <p>$49.990</p>
+        </div>
+        <div class="producto" onclick="abrirDetalle('Peluche Gato','Gatito de peluche con bigotes bordados.',['10.jpg','10a.jpg','10b.jpg'], '$49.990')">
+            <img src="10.jpg">
+            <h3>Peluche Gato</h3>
+            <p>$49.990</p>
+        </div>
+    </div>
+</section>
+
+<!-- LÍNEA DIVISORIA ENTRE PRODUCTOS Y CATEGORÍAS -->
+<div class="linea-divisoria"></div>
+
+<!-- SECCIÓN CATEGORIAS DESTACADAS -->
+<section class="categorias-destacadas">
+    <h2 class="titulo-categorias">CATEGORÍAS</h2>
+    <div class="grid-categorias">
+        <!-- Fila 1 -->
+        <div class="categoria-item" onclick="irACategoria('tazas')">
+            <img src="tazas.png" alt="Tazas Personalizadas">
+            <div class="categoria-overlay">
+                <h3>TAZAS</h3>
+            </div>
+        </div>
+        
+        <div class="categoria-item" onclick="irACategoria('manillas')">
+            <img src="manillas.png" alt="Manillas y Pulseras">
+            <div class="categoria-overlay">
+                <h3>MANILLAS</h3>
+            </div>
+        </div>
+        
+        <!-- Fila 2 -->
+        <div class="categoria-item" onclick="irACategoria('ramos')">
+            <img src="ramos.png" alt="Ramos de Flores">
+            <div class="categoria-overlay">
+                <h3>RAMOS</h3>
+            </div>
+        </div>
+        
+        <div class="categoria-item" onclick="irACategoria('regalos')">
+            <img src="regalos.png" alt="Regalos Especiales">
+            <div class="categoria-overlay">
+                <h3>REGALOS</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL PRODUCTO -->
+<div class="product-detail" id="productDetail">
+    <div class="product-detail-content">
+        <span class="close-detail" onclick="cerrarDetalle()"><i class="fas fa-arrow-left"></i></span>
+        <div class="product-images">
+            <img src="" class="main-img" id="detailMainImg">
+            <div class="thumbs" id="thumbContainer"></div>
+        </div>
+        <div class="product-info">
+            <h1 id="detailTitle"></h1>
+            <p class="description" id="detailDesc"></p>
+            <p class="price" id="detailPrice"></p>
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="detailCantidad" value="1" min="1">
+            <button class="whatsapp-btn" onclick="enviarWhatsAppDetalle()">Pedir por WhatsApp</button>
+            <div class="share-icons">
+                <a href="#" onclick="compartir('whatsapp')"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" onclick="compartir('instagram')"><i class="fab fa-instagram"></i></a>
+                <a href="#" onclick="compartir('facebook')"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-logo">
+        <img src="12.png" alt="Lumabloom">
+    </div>
+    <p>© 2026 Lumabloom · Todos los derechos reservados</p>
+    <p>✨ Flores y regalos con amor ✨</p>
+    <div class="footer-social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
+</footer>
+
+<script>
+function toggleMode(){ document.body.classList.toggle("dark-mode"); }
+
+let slides=document.querySelectorAll(".slide");
+let index=0;
+function changeSlide(){
+    slides[index].classList.remove("active");
+    index=(index+1)%slides.length;
+    slides[index].classList.add("active");
+}
+setInterval(changeSlide,7000);
+
+/* MODAL PRODUCTO */
+const productDetail = document.getElementById('productDetail');
+const detailMainImg = document.getElementById('detailMainImg');
+const detailTitle = document.getElementById('detailTitle');
+const detailDesc = document.getElementById('detailDesc');
+const thumbContainer = document.getElementById('thumbContainer');
+const detailPrice = document.getElementById('detailPrice');
+const detailCantidad = document.getElementById('detailCantidad');
+
+function abrirDetalle(title, desc, imgs, price){
+    detailTitle.textContent = title;
+    detailDesc.textContent = desc;
+    detailPrice.textContent = price;
+    detailCantidad.value = 1;
+    detailMainImg.src = imgs[0];
+
+    thumbContainer.innerHTML = '';
+    imgs.forEach((img,i)=>{
+        const t = document.createElement('img');
+        t.src = img;
+        if(i===0) t.classList.add('active');
+        t.onclick = () => {
+            detailMainImg.src = img;
+            thumbContainer.querySelectorAll('img').forEach(e=>e.classList.remove('active'));
+            t.classList.add('active');
+        };
+        thumbContainer.appendChild(t);
+    });
+
+    productDetail.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarDetalle(){ 
+    productDetail.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function enviarWhatsAppDetalle(){
+    const cantidad = detailCantidad.value;
+    const producto = detailTitle.textContent;
+    const mensaje = `Hola! Quiero comprar ${cantidad} ${producto}`;
+    const numero = "5129473241";
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url,'_blank');
+}
+
+function compartir(red){
+    const urlProducto = window.location.href;
+    if(red==='whatsapp'){
+        window.open(`https://wa.me/?text=${encodeURIComponent('Mira este producto de Lumabloom: ' + urlProducto)}`,'_blank');
+    } else if(red==='instagram'){
+        window.open(`https://www.instagram.com/?url=${encodeURIComponent(urlProducto)}`,'_blank');
+    } else if(red==='facebook'){
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlProducto)}`,'_blank');
+    }
+}
+
+// Función para redirigir a categorías
+function irACategoria(categoria) {
+    switch(categoria) {
+        case 'tazas':
+            window.location.href = '#tazas';
+            break;
+        case 'manillas':
+            window.location.href = '#manillas';
+            break;
+        case 'ramos':
+            window.location.href = '#ramos';
+            break;
+        case 'regalos':
+            window.location.href = '#regalos';
+            break;
+        default:
+            console.log('Categoría no encontrada');
+    }
+    
+    alert(`✨ Categoría seleccionada: ${categoria} ✨`);
+}
+
+// Botón subir arriba
+window.addEventListener('scroll', function() {
+    const subir = document.getElementById('subirArriba');
+    if (window.scrollY > 300) {
+        subir.classList.add('visible');
+    } else {
+        subir.classList.remove('visible');
+    }
+});
+
+document.getElementById('subirArriba').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && productDetail.classList.contains('active')) {
+        cerrarDetalle();
+    }
+});
+</script>
+
+</body>
+</html>
