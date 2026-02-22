@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>Lumabloom · Flores y Regalos</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -33,11 +33,6 @@ body{
     background-image: radial-gradient(var(--azul-suave) 1px, transparent 1px);
     background-size: 30px 30px;
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%234A7B9D" opacity="0.3"/><circle cx="12" cy="12" r="5" fill="%234A7B9D"/></svg>') 12 12, auto;
-}
-
-.dark-mode{
-    --fondo:#1e1e1e;
-    --texto:#c4e4f7;
 }
 
 body:active {
@@ -75,6 +70,29 @@ body:active {
     transform: scale(1.15) rotate(5deg);
     background: #128C7E;
     box-shadow: 0 20px 40px rgba(18, 140, 126, 0.5);
+}
+
+/* BOTÓN DE IDIOMA - NUEVO (reemplaza al modo oscuro) */
+.idioma-btn {
+    cursor:pointer;
+    font-size:28px;
+    background: var(--azul-gradient);
+    border: 2px solid white;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(74, 123, 157, 0.3);
+}
+
+.idioma-btn:hover {
+    transform: rotate(360deg) scale(1.1);
+    background: var(--azul-oscuro);
 }
 
 /* SUBIR ARRIBA */
@@ -175,18 +193,6 @@ body:active {
     color: var(--azul-oscuro);
 }
 
-.toggle{
-    cursor:pointer;
-    font-size:28px;
-    background:none;
-    border:none;
-    transition: 0.3s;
-}
-
-.toggle:hover {
-    transform: rotate(180deg);
-}
-
 /* CATEGORÍAS */
 .categorias{
     background: var(--azul-gradient);
@@ -231,7 +237,7 @@ body:active {
     transform:translateY(-2px);
 }
 
-/* SLIDER */
+/* SLIDER - Optimizado para móviles */
 .slider{
     width:100%;
     height:500px;
@@ -777,30 +783,43 @@ body:active {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* FOOTER */
+/* FOOTER CON IMAGEN - Reducido y optimizado */
 .footer{
-    background: linear-gradient(135deg, var(--azul-suave) 0%, var(--azul-muy-suave) 100%);
-    color: var(--marron);
+    background-image: url('footer.jpg'); /* Cambia esto por el nombre de tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
     text-align:center;
-    padding:5px 1px 5px;
+    padding: 30px 15px 20px; /* Reducido el padding */
     position: relative;
     overflow: hidden;
+    min-height: auto; /* Ajuste automático */
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Overlay oscuro para que el texto se vea mejor sobre la imagen */
 .footer::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 5px;
-    background: var(--azul-gradient);
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Capa oscura semitransparente */
+    z-index: 1;
+}
+
+.footer-logo{
+    position: relative;
+    z-index: 2;
 }
 
 .footer-logo img{
-    height:280px;
-    margin-bottom:15px;
-    filter: drop-shadow(0 5px 5px rgba(74, 123, 157, 0.5));
+    height: 150px; /* Reducido de 280px a 150px */
+    margin-bottom: 10px; /* Reducido */
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.5));
     transition: 0.3s;
 }
 
@@ -809,32 +828,39 @@ body:active {
 }
 
 .footer p {
+    position: relative;
+    z-index: 2;
     font-family:'Montserrat', sans-serif;
     font-weight:500;
-    font-size: 18px;
-    margin: 20px 0;
-    color: var(--marron);
+    font-size: 16px; /* Reducido ligeramente */
+    margin: 10px 0; /* Reducido */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .footer-social{
+    position: relative;
+    z-index: 2;
     display:flex;
     justify-content:center;
-    gap:30px;
-    margin-top:25px;
+    gap:20px; /* Reducido */
+    margin-top:15px; /* Reducido */
 }
 
 .footer-social a{
-    color: var(--marron);
-    font-size:28px;
+    color: white;
+    font-size:24px; /* Reducido */
     transition: 0.3s;
-    width: 60px;
-    height: 60px;
-    background: white;
+    width: 45px; /* Reducido */
+    height: 45px; /* Reducido */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: var(--sombra-suave);
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .footer-social a:hover{
@@ -862,50 +888,68 @@ body:active {
     50% { transform: scale(1.3); opacity: 1; }
 }
 
-/* Responsive para móviles */
+/* RESPONSIVE MEJORADO PARA MÓVILES */
 @media (max-width: 768px) {
     .banner {
-        padding: 30px 20px;
+        padding: 20px 15px;
     }
     
     .logo img {
-        height: 120px;
+        height: 90px; /* Reducido para móvil */
     }
     
-    .social a, .admin, .toggle {
+    .social a, .admin {
         font-size: 24px;
     }
     
+    .idioma-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
     .categorias {
-        gap: 20px;
+        gap: 15px;
         flex-wrap: wrap;
-        padding: 15px;
+        padding: 12px 10px;
     }
     
     .categorias a {
         font-size: 14px;
     }
     
+    /* SLIDER RESPONSIVE */
     .slider {
-        height: 300px;
+        height: 250px; /* Altura reducida para móvil */
+    }
+    
+    .slide {
+        object-position: center; /* Centra la imagen */
     }
     
     .catalogo h2 {
         font-size: 36px;
+        margin-bottom: 30px;
     }
     
     .productos {
-        padding: 0 20px;
-        gap: 20px;
+        padding: 0 15px;
+        gap: 15px;
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+    
+    .producto img {
+        height: 220px;
     }
     
     .categorias-destacadas {
-        padding: 30px 15px 20px 15px;
+        padding: 25px 15px 20px 15px;
     }
     
     .titulo-categorias {
         font-size: 28px;
         padding: 8px 20px;
+        margin-bottom: 20px;
     }
     
     .grid-categorias {
@@ -920,11 +964,36 @@ body:active {
     .categoria-overlay {
         transform: translateY(0);
         background: linear-gradient(to top, rgba(74, 123, 157, 0.95), transparent);
-        padding: 15px;
+        padding: 12px;
     }
     
     .categoria-overlay h3 {
         font-size: 24px;
+    }
+    
+    /* FOOTER RESPONSIVE */
+    .footer {
+        padding: 20px 10px 15px;
+    }
+    
+    .footer-logo img {
+        height: 100px; /* Aún más pequeño en móvil */
+    }
+    
+    .footer p {
+        font-size: 14px;
+        margin: 8px 0;
+    }
+    
+    .footer-social {
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    .footer-social a {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
     }
     
     .whatsapp-flotante {
@@ -942,8 +1011,46 @@ body:active {
         height: 45px;
         font-size: 22px;
     }
+    
+    /* Ajustes para el modal en móvil */
+    .product-detail-content {
+        padding: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .product-images img.main-img {
+        height: 300px;
+    }
+    
+    .thumbs img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .product-info h1 {
+        font-size: 24px;
+    }
+    
+    .product-info p.price {
+        font-size: 22px;
+    }
 }
 
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .slider {
+        height: 200px; /* Más pequeño para pantallas muy pequeñas */
+    }
+    
+    .categoria-item {
+        height: 150px;
+    }
+    
+    .footer-logo img {
+        height: 80px;
+    }
+}
 </style>
 </head>
 
@@ -973,7 +1080,8 @@ body:active {
 
     <div class="right-icons">
         <a href="admin.html" class="admin"><i class="fas fa-user-shield"></i></a>
-        <button class="toggle" onclick="toggleMode()">🌙</button>
+        <!-- BOTÓN DE IDIOMA (reemplaza al modo oscuro) -->
+        <button class="idioma-btn" onclick="cambiarIdioma()">ES</button>
     </div>
 </header>
 
@@ -1072,7 +1180,7 @@ body:active {
         </div>
         
         <div class="categoria-item" onclick="irACategoria('manillas')">
-            <img src="manillas.png" alt="Manillas y Pulseras">
+            <img src="ramos.png" alt="Manillas y Pulseras">
             <div class="categoria-overlay">
                 <h3>MANILLAS</h3>
             </div>
@@ -1080,7 +1188,7 @@ body:active {
         
         <!-- Fila 2 -->
         <div class="categoria-item" onclick="irACategoria('ramos')">
-            <img src="ramos.png" alt="Ramos de Flores">
+            <img src="manillas.png" alt="Ramos de Flores">
             <div class="categoria-overlay">
                 <h3>RAMOS</h3>
             </div>
@@ -1119,6 +1227,7 @@ body:active {
     </div>
 </div>
 
+<!-- FOOTER CON IMAGEN DE FONDO -->
 <footer class="footer">
     <div class="footer-logo">
         <img src="12.png" alt="Lumabloom">
@@ -1133,7 +1242,7 @@ body:active {
 </footer>
 
 <script>
-function toggleMode(){ document.body.classList.toggle("dark-mode"); }
+// Eliminada la función toggleMode()
 
 let slides=document.querySelectorAll(".slide");
 let index=0;
@@ -1248,6 +1357,18 @@ document.addEventListener('keydown', function(e) {
         cerrarDetalle();
     }
 });
+
+// Nueva función para cambiar idioma (reemplaza al modo oscuro)
+function cambiarIdioma() {
+    const btn = document.querySelector('.idioma-btn');
+    if (btn.textContent === 'ES') {
+        btn.textContent = 'EN';
+        alert('Idioma cambiado a Inglés (simulación)');
+    } else {
+        btn.textContent = 'ES';
+        alert('Idioma cambiado a Español (simulación)');
+    }
+}
 </script>
 
 </body>
