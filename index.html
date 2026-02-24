@@ -785,7 +785,7 @@ body{
 
 /* CATALOGO */
 .catalogo{
-    padding:20px 0px;
+    padding:5px 0px;
     text-align:center;
     background: transparent;
     position: relative;
@@ -1416,7 +1416,7 @@ body{
     
     .catalogo h2 {
         font-size: 36px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
     
     .productos {
@@ -1540,7 +1540,7 @@ body{
 <body>
 
 <!-- WHATSAPP FLOTANTE -->
-<a href="https://wa.me/5129473241" class="whatsapp-flotante" target="_blank">
+<a href="https://wa.me/15129473241" class="whatsapp-flotante" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -1623,8 +1623,7 @@ body{
     <a href="#">Ramos</a>
     <a href="#">Regalos</a>
     <a href="#">Tazas</a>
-    <a href="#">Peluches</a>
-    <a href="#">Personalizados</a>
+    <a href="#">Manillas</a>
 </nav>
 
 <section class="slider">
@@ -1918,7 +1917,7 @@ function enviarCarritoWhatsApp() {
     carrito = [];
     guardarCarrito();
     
-    window.open(`https://wa.me/5129473241?text=${encodeURIComponent(mensaje)}`, '_blank');
+    window.open(`https://wa.me/15129473241?text=${encodeURIComponent(mensaje)}`, '_blank');
     cerrarCarrito();
 }
 
@@ -2034,7 +2033,7 @@ function enviarWhatsAppDetalle() {
     
     const cantidad = detailCantidad.value;
     const mensaje = `Hola! Quiero comprar ${cantidad} ${producto.nombre} - $${(producto.precio * cantidad).toLocaleString('es-CL')}`;
-    window.open(`https://wa.me/5129473241?text=${encodeURIComponent(mensaje)}`, '_blank');
+    window.open(`https://wa.me/15129473241?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
 // Slider
@@ -2092,4 +2091,5 @@ document.addEventListener('keydown', (e) => {
 
 </body>
 </html>
+
 
